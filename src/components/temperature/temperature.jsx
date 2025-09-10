@@ -1,20 +1,13 @@
-import {
-  IconHaze,
-  IconSnowflake,
-  IconCloudBolt,
-  IconCloud,
-  IconSun,
-  IconCloudRain,
-} from "@tabler/icons-react";
+import { returnIcon } from "../../utils/IconUtils";
 
 export default function Temperature() {
   const icons = [
-    IconHaze,
-    IconSnowflake,
-    IconCloudBolt,
-    IconCloud,
-    IconSun,
-    IconCloudRain,
+    "IconHaze",
+    "IconSnowflake",
+    "IconCloudBolt",
+    "IconCloud",
+    "IconSun",
+    "IconCloudRain",
   ];
 
   const generateRandomTemperature = (min = -5, max = 35) => {
@@ -37,7 +30,7 @@ export default function Temperature() {
         return (
           <div className="w-1/6 flex-shrink-0 flex flex-col items-center gap-3">
             <p className="text-1xl">{index === 0 ? "Now" : hour.hour}</p>
-            <IconHaze stroke={2} className="w-8 h-8" />
+            {returnIcon(hour.icon)}
             <p className="text-2xl">{hour.temperature} °</p>
           </div>
         );

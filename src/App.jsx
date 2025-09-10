@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Forecast from "./components/forecast/forecast";
-import Temperature from "./components/temperature/temperature";
+import Forecast from "./components/forecast/Forecast";
+import Temperature from "./components/temperature/Temperature";
 import Today from "./components/today/Today";
 
 function App() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  //API DE FORECAST MIRAR https://www.weatherapi.com/docs/ PARA INTEGRAR :)
 
   const API_KEY = "67273468b6164e1bb4893548251009"; // reemplaza con tu API Key
   const CITY = "Madrid"; // ciudad que quieras consultar

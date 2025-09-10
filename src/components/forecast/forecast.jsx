@@ -1,58 +1,51 @@
-import {
-  IconHaze,
-  IconSnowflake,
-  IconCloudBolt,
-  IconCloud,
-  IconSun,
-  IconCloudRain,
-} from "@tabler/icons-react";
+import { returnIcon } from "../../utils/IconUtils";
 
 const forecast = [
   {
     id: 1,
-    icon: "iconSun",
+    icon: "IconSun",
     day: "Monday",
     max: "23",
     low: "21",
   },
   {
     id: 2,
-    icon: "iconCloud",
+    icon: "IconCloud",
     day: "Tuesday",
     max: "23",
     low: "21",
   },
   {
     id: 3,
-    icon: "iconCloudRain",
+    icon: "IconCloudRain",
     day: "Wednesday",
     max: "23",
     low: "21",
   },
   {
     id: 4,
-    icon: "iconCloudBolt",
+    icon: "IconCloudBolt",
     day: "Thursday",
     max: "23",
     low: "21",
   },
   {
     id: 5,
-    icon: "iconSnowflake",
+    icon: "IconSnowflake",
     day: "Friday",
     max: "23",
     low: "21",
   },
   {
     id: 6,
-    icon: "iconHaze",
+    icon: "IconHaze",
     day: "Saturday",
     max: "23",
     low: "21",
   },
   {
     id: 7,
-    icon: "iconHaze",
+    icon: "IconHaze",
     day: "Sunday",
     max: "23",
     low: "21",
@@ -70,14 +63,16 @@ export default function Forecast() {
           <>
             <div
               key={day.id}
-              className="flex flex-row justify-around w-full py-5 text-1xl"
+              className="flex flex-row justify-around w-full py-5 text-1xl "
             >
-              <p className="w-1/4">{day.day}</p>
-              <IconSun stroke={2} className="w-1/4" />
+              <p className="w-1/4 text-1xl">
+                {index === 0 ? "Today" : day.day}
+              </p>
+              {returnIcon(day.icon)}
               <div className="flex flex-row justify-around w-2/4">
-                <p>{day.max}</p>
+                <p className="text-1xl">{day.max}</p>
                 <div>--------</div>
-                <p>{day.low}</p>
+                <p className="text-1xl">{day.low}</p>
               </div>
             </div>
 
