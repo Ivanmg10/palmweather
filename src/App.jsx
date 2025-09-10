@@ -5,8 +5,8 @@ import Today from "./components/today/Today";
 
 function App() {
   return (
-    <div className="h-screen flex flex-col justify-center items-center bg-blue-200">
-      <div className="w-[50%]">
+    <div className="min-h-screen flex flex-col justify-center items-center text-white bg-[#171717]">
+      <div className="w-[50%] flex flex-col justify-center items-center">
         <Today />
 
         <Temperature />

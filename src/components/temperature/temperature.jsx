@@ -33,14 +33,14 @@ export default function Temperature() {
   return (
     <div
       id="hour-temperature"
-      className="m-10 flex flex-row flex-nowrap overflow-x-auto justify-around gap-1 scrollbar-hide pb-6"
+      className="m-10 flex flex-row flex-nowrap overflow-x-auto justify-around gap-1 py-6 bg-[#1e1e1e]  rounded-3xl w-full"
     >
       {hoursArray.map((hour, index) => {
         return (
           <div className="w-1/6 flex-shrink-0 flex flex-col items-center gap-3">
-            <p>{index === 0 ? "Now" : hour.hour}</p>
-            <IconHaze stroke={2} />
-            <p>{hour.temperature}</p>
+            <p className="text-1xl">{index === 0 ? "Now" : hour.hour}</p>
+            <IconHaze stroke={2} className="w-8 h-8" />
+            <p className="text-2xl">{hour.temperature} °</p>
           </div>
         );
       })}
