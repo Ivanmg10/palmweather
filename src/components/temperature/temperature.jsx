@@ -28,8 +28,6 @@ export default function Temperature() {
     temperature: generateRandomTemperature(),
   }));
 
-  console.log(hoursArray);
-
   return (
     <div
       id="hour-temperature"
