@@ -63,16 +63,18 @@ export default function Forecast() {
           <>
             <div
               key={day.id}
-              className="flex flex-row justify-around w-full py-5 text-1xl "
+              className="flex flex-row justify-around items-center w-full py-4 text-1xl "
             >
               <p className="w-1/4 text-1xl">
                 {index === 0 ? "Today" : day.day}
               </p>
+
               {returnIcon(day.icon)}
+
               <div className="flex flex-row justify-around w-2/4">
-                <p className="text-1xl">{day.max}</p>
+                <p className="text-2xl">{day.max} °</p>
                 <div>--------</div>
-                <p className="text-1xl">{day.low}</p>
+                <p className="text-2xl">{day.low} °</p>
               </div>
             </div>
 
