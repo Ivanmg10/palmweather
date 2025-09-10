@@ -1,7 +1,6 @@
-import { returnIcon } from "../../utils/IconUtils";
+import { getWeatherIcon } from "../../utils/IconUtils";
 
 export default function Today({ data }) {
-  console.log(data);
   return (
     <div
       id="main-weather"
@@ -11,7 +10,7 @@ export default function Today({ data }) {
       <p className="text-3xl">{data.location.name}</p>
       <div className="flex items-center">
         <p className="text-9xl p-2">{data.current.temp_c}°</p>
-        {returnIcon("IconSun", "big")}
+        {getWeatherIcon(data.current.condition.code, "big")}
       </div>
 
       <div id="high-lows" className="flex">

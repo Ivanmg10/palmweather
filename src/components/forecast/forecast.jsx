@@ -1,58 +1,39 @@
-import { returnIcon } from "../../utils/IconUtils";
+import { useEffect, useState } from "react";
+import { getWeatherIcon } from "../../utils/IconUtils";
 
-const forecast = [
-  {
-    id: 1,
-    icon: "IconSun",
-    day: "Monday",
-    max: "23",
-    low: "21",
-  },
-  {
-    id: 2,
-    icon: "IconCloud",
-    day: "Tuesday",
-    max: "23",
-    low: "21",
-  },
-  {
-    id: 3,
-    icon: "IconCloudRain",
-    day: "Wednesday",
-    max: "23",
-    low: "21",
-  },
-  {
-    id: 4,
-    icon: "IconCloudBolt",
-    day: "Thursday",
-    max: "23",
-    low: "21",
-  },
-  {
-    id: 5,
-    icon: "IconSnowflake",
-    day: "Friday",
-    max: "23",
-    low: "21",
-  },
-  {
-    id: 6,
-    icon: "IconHaze",
-    day: "Saturday",
-    max: "23",
-    low: "21",
-  },
-  {
-    id: 7,
-    icon: "IconHaze",
-    day: "Sunday",
-    max: "23",
-    low: "21",
-  },
-];
+export default function Forecast({ data }) {
+  const [forecast, setForecast] = useState([]);
 
-export default function Forecast() {
+  const getWeekday = (dateString) => {
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    const date = new Date(dateString);
+    const dayIndex = date.getDay(); // 0 = Sunday, 6 = Saturday
+    return days[dayIndex];
+  };
+
+  useEffect(() => {
+    if (!data?.forecast?.forecastday) return;
+
+    const forecastArray = data.forecast.forecastday.map((day, index) => ({
+      id: index,
+      day: getWeekday(day.date),
+      max: day.day.maxtemp_c,
+      low: day.day.mintemp_c,
+      icon: day.day.condition.code,
+    }));
+
+    setForecast(forecastArray);
+  }, [data]);
+
   return (
     <div
       id="10-day-forecast"
@@ -69,12 +50,12 @@ export default function Forecast() {
                 {index === 0 ? "Today" : day.day}
               </p>
 
-              {returnIcon(day.icon)}
+              {getWeatherIcon(day.icon)}
 
               <div className="flex flex-row justify-around w-2/4">
-                <p className="text-2xl">{day.max} °</p>
-                <div>--------</div>
                 <p className="text-2xl">{day.low} °</p>
+                <div>--------</div>
+                <p className="text-2xl">{day.max} °</p>
               </div>
             </div>
 

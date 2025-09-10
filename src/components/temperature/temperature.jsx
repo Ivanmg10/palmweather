@@ -1,37 +1,39 @@
-import { returnIcon } from "../../utils/IconUtils";
+import { getHour } from "../../utils/DateUtils";
+import { getWeatherIcon } from "../../utils/IconUtils";
 
-export default function Temperature() {
-  const icons = [
-    "IconHaze",
-    "IconSnowflake",
-    "IconCloudBolt",
-    "IconCloud",
-    "IconSun",
-    "IconCloudRain",
-  ];
+export default function Temperature({ data }) {
+  const hours = data.forecast.forecastday[0].hour;
+  const nextDayHours = data.forecast.forecastday[1].hour;
 
-  const generateRandomTemperature = (min = -5, max = 35) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  function buildNext24Hours(hours, nextDayHours) {
+    const now = new Date();
+    const currentHour = now.getHours();
 
-  const hoursArray = Array.from({ length: 24 }, (_, index) => ({
-    id: index + 1,
-    hour: index,
-    icon: icons[Math.floor(Math.random() * icons.length)],
-    temperature: generateRandomTemperature(),
-  }));
+    const startIndex = hours.findIndex((h) => {
+      const hourFromData = new Date(h.time.replace(" ", "T")).getHours();
+      return hourFromData === currentHour;
+    });
+
+    const todaySlice = hours.slice(startIndex);
+    const remaining = 24 - todaySlice.length;
+    const nextSlice = nextDayHours.slice(0, remaining);
+
+    return [...todaySlice, ...nextSlice];
+  }
 
   return (
     <div
       id="hour-temperature"
       className="m-10 flex flex-row flex-nowrap overflow-x-auto justify-around gap-1 py-6 bg-[#1e1e1e]  rounded-3xl w-full"
     >
-      {hoursArray.map((hour, index) => {
+      {buildNext24Hours(hours, nextDayHours).map((hour, index) => {
         return (
           <div className="w-1/6 flex-shrink-0 flex flex-col items-center gap-3">
-            <p className="text-1xl">{index === 0 ? "Now" : hour.hour}</p>
-            {returnIcon(hour.icon)}
-            <p className="text-2xl">{hour.temperature} °</p>
+            <p className="text-1xl">
+              {index === 0 ? "Now" : getHour(hour.time)}
+            </p>
+            {getWeatherIcon(hour.condition.code)}
+            <p className="text-2xl">{hour.temp_c} °</p>
           </div>
         );
       })}

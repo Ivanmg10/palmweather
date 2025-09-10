@@ -60,9 +60,9 @@ function App() {
       <div className="w-[50%] flex flex-col justify-center items-center">
         <Today data={data} />
 
-        <Temperature />
+        <Temperature data={data} />
 
-        <Forecast />
+        <Forecast data={data} />
       </div>
     </div>
   );
