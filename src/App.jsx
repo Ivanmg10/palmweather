@@ -14,12 +14,11 @@ function App() {
   //API DE FORECAST MIRAR https://www.weatherapi.com/docs/ PARA INTEGRAR :)
 
   const API_KEY = "67273468b6164e1bb4893548251009";
-  const CITY = location;
 
   useEffect(() => {
     const fetchData = (api) => {
       fetch(
-        `http://api.weatherapi.com/v1/${api}?key=${API_KEY}&q=${CITY}&aqi=no&days=7`
+        `http://api.weatherapi.com/v1/${api}?key=${API_KEY}&q=${location}&aqi=no&days=7`
       )
         .then((res) => res.json())
         .then((data) => {
