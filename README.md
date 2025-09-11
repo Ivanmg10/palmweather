@@ -85,7 +85,7 @@ Mobile View
 ## 🔮 Future Improvements
 
 Implement dark/light theme toggle.
-
 Add geolocation feature to detect user location automatically.
-
 Support more languages for international users.
+
+Optimize code

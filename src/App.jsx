@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Forecast from "./components/forecast/Forecast";
-import Temperature from "./components/temperature/Temperature";
-import Today from "./components/today/Today";
-import Loading from "./pages/Loading";
+import Forecast from "./components/forecast/Forecast.jsx";
+import Temperature from "./components/temperature/Temperature.jsx";
+import Today from "./components/today/Today.jsx";
+import Loading from "./pages/Loading.jsx";
+import Error from "./pages/Error.jsx";
 
 function App() {
   const [data, setData] = useState(null);
