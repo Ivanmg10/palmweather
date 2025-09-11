@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     const fetchData = (api) => {
       fetch(
-        `http://api.weatherapi.com/v1/${api}?key=${API_KEY}&q=${location}&aqi=no&days=7`
+        `https://api.weatherapi.com/v1/${api}?key=${API_KEY}&q=${location}&aqi=no&days=7`
       )
         .then((res) => res.json())
         .then((data) => {
