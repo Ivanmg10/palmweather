@@ -24,16 +24,16 @@ export default function Temperature({ data }) {
   return (
     <div
       id="hour-temperature"
-      className="m-10 flex flex-row flex-nowrap overflow-x-auto justify-around gap-1 py-6 bg-[#1e1e1e]  rounded-3xl w-full"
+      className="sm:m-10 m-2 flex flex-row flex-nowrap overflow-x-auto justify-around gap-1 py-6 bg-[#1e1e1e]  rounded-3xl w-full"
     >
       {buildNext24Hours(hours, nextDayHours).map((hour, index) => {
         return (
-          <div className="w-1/6 flex-shrink-0 flex flex-col items-center gap-3">
+          <div className="w-1/6 flex-shrink-0 flex flex-col items-center gap-3 ml-4 sm:ml-0">
             <p className="text-1xl">
               {index === 0 ? "Now" : getHour(hour.time)}
             </p>
-            {getWeatherIcon(hour.condition.code)}
-            <p className="text-2xl">{hour.temp_c} °</p>
+            {getWeatherIcon(hour.condition.text)}
+            <p className="text-1xl sm:text-2xl">{Math.round(hour.temp_c)} °</p>
           </div>
         );
       })}

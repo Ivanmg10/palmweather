@@ -3,17 +3,18 @@ import "./App.css";
 import Forecast from "./components/forecast/Forecast";
 import Temperature from "./components/temperature/Temperature";
 import Today from "./components/today/Today";
-import { Spinner } from "./assets/Spinner";
+import Loading from "./pages/Loading";
 
 function App() {
   const [data, setData] = useState(null);
+  const [location, setLocation] = useState("Langreo");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   //API DE FORECAST MIRAR https://www.weatherapi.com/docs/ PARA INTEGRAR :)
 
-  const API_KEY = "67273468b6164e1bb4893548251009"; // reemplaza con tu API Key
-  const CITY = "Langreo"; // ciudad que quieras consultar
+  const API_KEY = "67273468b6164e1bb4893548251009";
+  const CITY = location;
 
   useEffect(() => {
     const fetchData = (api) => {
@@ -32,33 +33,14 @@ function App() {
     };
 
     fetchData("/forecast.json");
-  }, []); // [] para que solo se ejecute al montar el componente
+  }, [location]);
 
-  if (loading)
-    return (
-      <div className="min-h-screen flex flex-col justify-center items-center text-white bg-[#171717]">
-        <div className="w-[50%] flex flex-row justify-center items-center gap-3">
-          <div role="status">
-            <Spinner />
-            <span class="sr-only">Loading...</span>
-          </div>
-          <p>Loading...</p>
-        </div>
-      </div>
-    );
-  if (error)
-    return (
-      <div className="min-h-screen flex flex-col justify-center items-center text-white bg-[#171717]">
-        <div className="w-[50%] flex flex-col justify-center items-center">
-          <p className="text-6xl">Error :(</p>
-        </div>
-      </div>
-    );
-
+  if (loading) return <Loading />;
+  if (error) return <Error />;
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-white bg-[#171717]">
-      <div className="w-[50%] flex flex-col justify-center items-center">
-        <Today data={data} />
+      <div className="w-[75%] sm:w-1/2 flex flex-col justify-center items-center">
+        <Today data={data} setLocation={setLocation} />
 
         <Temperature data={data} />
 
