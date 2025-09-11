@@ -7,9 +7,9 @@ This application provides real-time and forecast weather information using data 
 
 ## 🚀 Features
 
-- **Current Weather**: Display of temperature, condition, humidity, wind speed and more.
+- **Current Weather**: Display of temperature.
 - **24-Hour Forecast**: Shows the weather for the next 24 hours, starting from the current time.
-- **7-Day Forecast**: Overview of upcoming days with icons, max/min temperature, and conditions.
+- **7-Day Forecast**: Overview of upcoming days with icons, max/min temperature.
 - **Dynamic Icons**: Weather conditions are mapped to custom icons using [Tabler Icons](https://tabler-icons.io/).
 
 ---
