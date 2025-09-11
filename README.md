@@ -9,9 +9,9 @@ It is fully **responsive**, so it works well on both desktop and mobile devices.
 
 ## 🚀 Features
 
-- **Current Weather**: Display of temperature, condition, humidity, wind speed and more.
+- **Current Weather**: Display of temperature.
 - **24-Hour Forecast**: Shows the weather for the next 24 hours, starting from the current time.
-- **7-Day Forecast**: Overview of upcoming days with icons, max/min temperature, and conditions.
+- **7-Day Forecast**: Overview of upcoming days with icons, max/min temperature.
 - **Dynamic Icons**: Weather conditions are mapped to custom icons using [Tabler Icons](https://tabler-icons.io/).
 - **Responsive Design**: Layout adapts to different screen sizes for optimal usability.
 - **City Search**: Users can type a city name in the search bar and press Enter to update the forecast dynamically.
