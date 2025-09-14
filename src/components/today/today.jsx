@@ -15,7 +15,7 @@ export default function Today({ data, setLocation }) {
     <>
       <div
         id="main-weather"
-        className="flex flex-col justify-center items-center  w-64 p-5"
+        className="flex flex-col justify-center items-center w-64 p-5"
       >
         <p className="text-3xl">{data.location.name}</p>
         <div className="flex items-center">

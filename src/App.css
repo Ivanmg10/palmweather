@@ -1,6 +1,8 @@
 #root {
   margin: 0 auto;
   text-align: center;
+  background-color: #171717;
+  color: white;
 }
 
 /* #hour-temperature {

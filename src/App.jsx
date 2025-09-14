@@ -38,7 +38,7 @@ function App() {
   if (loading) return <Loading />;
   if (error) return <Error />;
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center text-white bg-[#171717]">
+    <div className="min-h-screen flex flex-col justify-center items-center">
       <div className="w-[75%] sm:w-1/2 flex flex-col justify-center items-center">
         <Today data={data} setLocation={setLocation} />
 
