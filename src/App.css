@@ -5,6 +5,11 @@
   color: white;
 }
 
+body {
+  background-color: #171717;
+  color: white;
+}
+
 /* #hour-temperature {
   scrollbar-width: thin;
   scrollbar-color: #424346 #f3f4f6;
