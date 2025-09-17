@@ -44,7 +44,7 @@ export default function Forecast({ data }) {
   return (
     <div
       id="10-day-forecast"
-      className="m-2 sm:m-10 flex flex-col p-1 bg-[#1e1e1e] w-full rounded-3xl"
+      className="m-2 sm:m-5 flex flex-col p-1 bg-[#1e1e1e] w-full rounded-3xl"
     >
       {forecast.map((day, index) => {
         return (
