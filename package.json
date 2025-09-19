@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@amcharts/amcharts4": "^4.10.40",
     "@amcharts/amcharts5": "^5.13.6",
     "@fontsource/roboto": "^5.2.6",
     "@tabler/icons-react": "^3.34.1",
