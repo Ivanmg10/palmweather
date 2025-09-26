@@ -6,9 +6,9 @@ export default function Loading() {
       <div className="w-[50%] flex flex-row justify-center items-center gap-3">
         <div role="status">
           <Spinner />
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
-        <p>Loading...</p>
+        <p>Estoy encontrando donde estas...</p>
       </div>
     </div>
   );

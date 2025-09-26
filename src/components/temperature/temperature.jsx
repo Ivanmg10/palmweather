@@ -28,7 +28,10 @@ export default function Temperature({ data }) {
     >
       {buildNext24Hours(hours, nextDayHours).map((hour, index) => {
         return (
-          <div className="w-1/6 flex-shrink-0 flex flex-col items-center gap-3 ml-4 sm:ml-0">
+          <div
+            className="w-1/6 flex-shrink-0 flex flex-col items-center gap-3 ml-4 sm:ml-0"
+            key={hour.time}
+          >
             <p className="text-1xl">
               {index === 0 ? "Now" : getHour(hour.time)}
             </p>

@@ -1,16 +1,8 @@
-import { useState } from "react";
 import { getWeatherColor } from "../../utils/IconUtils";
 
-export default function Today({ data, setLocation }) {
+export default function Today({ data }) {
   const bgColor = getWeatherColor(data.current.condition.text);
-  const [inputValue, setInputValue] = useState("");
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && inputValue.trim() !== "") {
-      setLocation(inputValue.trim());
-      setInputValue("");
-    }
-  };
 
   return (
     <>
@@ -21,6 +13,8 @@ export default function Today({ data, setLocation }) {
           p-5 rounded-3xl w-full gap-5 text-black ${bgColor}
         `}
       >
+
+
         <div className="flew flex-col justify-center items-center">
           <p className={`text-3xl`}>{data.location.name}</p>
           <div className="flex items-center">
@@ -41,17 +35,6 @@ export default function Today({ data, setLocation }) {
         </div>
 
         <div className="relative w-full 2xl:w-1/2 flex flex-col justify-center items-center gap-5 ">
-          <input
-            type="text"
-            id="username"
-            placeholder="Buscar.."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="block 2xl:w-full px-4 py-3 text-lg  text-black bg-transparent rounded-full focus:outline-none 
-             focus:ring-0 focus:ring-offset-0"
-          />
-
           <div className="hidden 2xl:grid grid-cols-2 gap-4 2xl:w-full w-[80%] ">
             <p className="text-xl">Wind: {data.current.wind_kph} km/h</p>
 
