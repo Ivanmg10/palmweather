@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getWeatherIcon } from "../../utils/IconUtils";
 
-export default function Forecast({ data }) {
+export default function Forecast({ data, setLocation }) {
   const [forecast, setForecast] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const getWeekday = (dateString) => {
     const days = [
@@ -41,41 +42,58 @@ export default function Forecast({ data }) {
     setForecast(forecastArray);
   }, [data]);
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim() !== "") {
+      setLocation(inputValue.trim());
+      setInputValue("");
+    }
+  };
+
   return (
     <div
       id="10-day-forecast"
-      className="m-2 sm:m-5 flex flex-col p-1 bg-[#1e1e1e] w-full rounded-3xl"
+      className="m-2 sm:m-5 flex flex-col p-1  w-full rounded-3xl"
     >
-      {forecast.map((day, index) => {
-        return (
-          <>
-            <div
-              key={day.id}
-              className="flex flex-row justify-around items-center w-full py-4 text-1xl"
-            >
-              <p className="w-1/4 text-1xl sm:font-semibold">
-                {index === 0 ? "Today" : day.day}
-              </p>
+      <div>
+        <input
+          type="text"
+          id="username"
+          placeholder="Buscar.."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className="block 2xl:w-full px-4 py-3 text-lg  text-white bg-transparent rounded-full focus:outline-none 
+             focus:ring-0 focus:ring-offset-0 w-full pb-5"
+        />
 
-              <div className="sm:w-1/4 sm:flex sm:justify-center">
-                {getWeatherIcon(day.text)}
+        {forecast.map((day, index) => {
+          return (
+            <div key={day.id}>
+              <div className="flex flex-row justify-around items-center w-full py-4 text-1xl">
+                <p className="w-1/4 text-1xl sm:font-semibold">
+                  {index === 0 ? "Today" : day.day}
+                </p>
+
+                <div className="sm:w-1/4 sm:flex sm:justify-center">
+                  {getWeatherIcon(day.text)}
+                </div>
+
+                <div className="flex flex-row justify-center items-center w-2/4 sm:w-2/4 sm:px-5">
+                  <p className="sm:text-2xl min-w-12 sm:min-w-16">{day.low}°</p>
+                  <hr className="w-0 sm:w-[50%] h-1 mx-auto border-0 rounded-sm bg-gradient-to-r from-blue-200 to-yellow-200" />
+                  <p className="sm:text-2xl min-w-12 sm:min-w-16">{day.max}°</p>
+                </div>
               </div>
 
-              <div className="flex flex-row justify-center items-center w-2/4 sm:w-2/4 sm:px-5">
-                <p className="sm:text-2xl min-w-12 sm:min-w-16">{day.low}°</p>
-                <hr class="w-0 sm:w-[50%] h-1 mx-auto border-0 rounded-sm bg-gradient-to-r from-blue-200 to-yellow-200" />
-                <p className="sm:text-2xl min-w-12 sm:min-w-16">{day.max}°</p>
-              </div>
-            </div>
-
-            {/* {index === 6 ? (
+              {/* {index === 6 ? (
               <></>
             ) : (
               <div className="w-[90%] border-b-1 border-gray-500"></div>
             )} */}
-          </>
-        );
-      })}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

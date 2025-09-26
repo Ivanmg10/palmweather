@@ -28,6 +28,20 @@ const iconColors = {
   default: "text-amber-400",
 };
 
+const bgColors = {
+  sun: "bg-gradient-to-r from-amber-200 to-amber-400",
+  moon: "bg-gradient-to-r from-blue-200 to-blue-400",
+  cloud: "bg-gradient-to-r from-gray-300 to-gray-400",
+  rain: "bg-gradient-to-r from-blue-400 to-blue-600",
+  snow: "bg-gradient-to-r from-blue-100 to-blue-300",
+  thunder: "bg-gradient-to-r from-yellow-300 to-yellow-500",
+  mist: "bg-gradient-to-r from-gray-500 to-gray-400",
+  fog: "bg-gradient-to-r from-gray-400 to-gray-500",
+  wind: "bg-gradient-to-r from-gray-400 to-gray-300",
+  temperature: "bg-gradient-to-r from-red-400 to-red-600",
+  default: "bg-gradient-to-r from-amber-400 to-amber-200",
+};
+
 const iconsMap = {
   IconMist: IconMist,
   IconFog: IconCloudFog,
@@ -66,6 +80,7 @@ const conditionTextIconMap = {
 
   "patchy rain possible": { icon: "IconCloudRain", type: "rain" },
   "light rain": { icon: "IconCloudRain", type: "rain" },
+  "light rain shower": { icon: "IconCloudRain", type: "rain" },
   "moderate rain": { icon: "IconCloudRain", type: "rain" },
   "heavy rain": { icon: "IconCloudRain", type: "rain" },
   "torrential rain": { icon: "IconCloudRain", type: "rain" },
@@ -89,6 +104,8 @@ const conditionTextIconMap = {
 export const getWeatherIcon = (text, size, isDay = true) => {
   if (!text) return returnIcon("IconSun", size, "sun");
 
+  if (size === "big") console.log(text);
+
   const normalizedText = text.trim().toLowerCase();
   const mapping = conditionTextIconMap[normalizedText] || {
     icon: isDay ? "IconSun" : "IconMoon",
@@ -96,4 +113,15 @@ export const getWeatherIcon = (text, size, isDay = true) => {
   };
 
   return returnIcon(mapping.icon, size, mapping.type);
+};
+
+//ESTA FUNCION SE USA PARA COLOREAR EL FONDO DEL TODAY
+export const getWeatherColor = (text) => {
+  const normalizedText = text.trim().toLowerCase();
+  const mapping = conditionTextIconMap[normalizedText] || {
+    icon: "IconSun",
+    type: "sun",
+  };
+
+  return bgColors[mapping.type];
 };
