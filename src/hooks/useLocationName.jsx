@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useLocationName() {
+export function useLocationName({ setError }) {
   const [location, setLocation] = useState("Cargando ubicación...");
   const [locationError, setLocationError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -8,6 +8,7 @@ export function useLocationName() {
   useEffect(() => {
     if (!navigator.geolocation) {
       setLocationError("Geolocalización no soportada por este navegador");
+      setError(true);
       setIsLoading(false);
       return;
     }
@@ -30,12 +31,14 @@ export function useLocationName() {
           setLocation(`${place}, ${state}, ${country}`);
           setIsLoading(false);
         } catch (err) {
-          setLocationError("Error obteniendo ubicación" + err);
+          setError(true);
+          setLocationError("Error obteniendo ubicación: " + err.message);
           setIsLoading(false);
         }
       },
       (err) => {
-        setLocationError("Permiso denegado o error al obtener ubicación" + err);
+        setError(true);
+        setLocationError("Error: " + err.message);
         setIsLoading(false);
       }
     );
