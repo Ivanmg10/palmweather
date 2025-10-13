@@ -44,7 +44,7 @@ function App() {
     };
 
     fetchData("/forecast.json");
-  }, [locationName]);
+  }, [locationName, isLoading]);
 
   if (error) return <Error locationError={locationError} />;
   if (loading) return <Loading />;
