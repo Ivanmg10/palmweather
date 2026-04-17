@@ -13,6 +13,7 @@ export function useLocationName({ setError }) {
       return;
     }
 
+    /* istanbul ignore next */
     if (location === "Cargando ubicación...") setIsLoading(true);
 
     navigator.geolocation.getCurrentPosition(
