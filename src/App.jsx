@@ -16,7 +16,7 @@ function App() {
 
   //API DE FORECAST MIRAR https://www.weatherapi.com/docs/ PARA INTEGRAR :)
 
-  const API_KEY = "67273468b6164e1bb4893548251009";
+  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
   useEffect(() => {
     setLocationName(location);
