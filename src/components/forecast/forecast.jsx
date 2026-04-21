@@ -18,8 +18,9 @@ export default function Forecast({ data, setLocation }) {
 
     const daysMin = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-    const date = new Date(dateString);
-    const dayIndex = date.getDay(); // 0 = Sunday, 6 = Saturday
+    const [year, month, day] = dateString.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+    const dayIndex = date.getDay();
 
     if (typeof window !== "undefined" && window.innerWidth < 640) {
       return daysMin[dayIndex];

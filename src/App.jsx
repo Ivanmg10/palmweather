@@ -23,19 +23,16 @@ function App() {
   }, [location]);
 
   useEffect(() => {
+    if (isLoading) return;
+
     const fetchData = (api) => {
       fetch(
         `https://api.weatherapi.com/v1/${api}?key=${API_KEY}&q=${locationName}&aqi=no&days=7`
       )
         .then((res) => res.json())
         .then((data) => {
-          if (
-            data.location.name !== "Ubicación De La Ubicación" &&
-            !isLoading
-          ) {
-            setData((prev) => ({ ...prev, ...data }));
-            setLoading(false);
-          }
+          setData((prev) => ({ ...prev, ...data }));
+          setLoading(false);
         })
         .catch((err) => {
           setError(err.message);
@@ -43,7 +40,7 @@ function App() {
         });
     };
 
-    fetchData("/forecast.json");
+    fetchData("forecast.json");
   }, [locationName, isLoading]);
 
   if (error) return <Error locationError={locationError} />;
