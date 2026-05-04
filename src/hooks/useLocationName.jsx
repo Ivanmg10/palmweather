@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 
 export function useLocationName({ setError }) {
-  const [location, setLocation] = useState("Cargando ubicación...");
+  const [location, setLocation] = useState("Loading location...");
   const [locationError, setLocationError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setLocationError("Geolocalización no soportada por este navegador");
+      setLocationError("Geolocation not supported by this browser");
       setError(true);
       setIsLoading(false);
       return;
     }
 
     /* istanbul ignore next */
-    if (location === "Cargando ubicación...") setIsLoading(true);
+    if (location === "Loading location...") setIsLoading(true);
 
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
@@ -33,7 +33,7 @@ export function useLocationName({ setError }) {
           setIsLoading(false);
         } catch (err) {
           setError(true);
-          setLocationError("Error obteniendo ubicación: " + err.message);
+          setLocationError("Error getting location: " + err.message);
           setIsLoading(false);
         }
       },

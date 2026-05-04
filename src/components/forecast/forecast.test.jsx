@@ -28,13 +28,13 @@ describe('Forecast', () => {
 
   test('renders search input', () => {
     render(<Forecast data={mockData} setLocation={jest.fn()} />)
-    expect(screen.getByPlaceholderText('Buscar..')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('Search city...')).toBeInTheDocument()
   })
 
   test('calls setLocation when Enter is pressed with non-empty input', () => {
     const setLocation = jest.fn()
     render(<Forecast data={mockData} setLocation={setLocation} />)
-    const input = screen.getByPlaceholderText('Buscar..')
+    const input = screen.getByPlaceholderText('Search city...')
     fireEvent.change(input, { target: { value: 'Madrid' } })
     fireEvent.keyDown(input, { key: 'Enter' })
     expect(setLocation).toHaveBeenCalledWith('Madrid')
@@ -42,7 +42,7 @@ describe('Forecast', () => {
 
   test('clears input after Enter with non-empty value', () => {
     render(<Forecast data={mockData} setLocation={jest.fn()} />)
-    const input = screen.getByPlaceholderText('Buscar..')
+    const input = screen.getByPlaceholderText('Search city...')
     fireEvent.change(input, { target: { value: 'Madrid' } })
     fireEvent.keyDown(input, { key: 'Enter' })
     expect(input.value).toBe('')
@@ -51,7 +51,7 @@ describe('Forecast', () => {
   test('does not call setLocation when Enter is pressed with empty input', () => {
     const setLocation = jest.fn()
     render(<Forecast data={mockData} setLocation={setLocation} />)
-    const input = screen.getByPlaceholderText('Buscar..')
+    const input = screen.getByPlaceholderText('Search city...')
     fireEvent.keyDown(input, { key: 'Enter' })
     expect(setLocation).not.toHaveBeenCalled()
   })
@@ -59,7 +59,7 @@ describe('Forecast', () => {
   test('does not call setLocation when non-Enter key is pressed', () => {
     const setLocation = jest.fn()
     render(<Forecast data={mockData} setLocation={setLocation} />)
-    const input = screen.getByPlaceholderText('Buscar..')
+    const input = screen.getByPlaceholderText('Search city...')
     fireEvent.change(input, { target: { value: 'Madrid' } })
     fireEvent.keyDown(input, { key: 'a' })
     expect(setLocation).not.toHaveBeenCalled()
@@ -83,6 +83,6 @@ describe('Forecast', () => {
 
   test('does not crash when data has no forecast', () => {
     render(<Forecast data={{}} setLocation={jest.fn()} />)
-    expect(screen.getByPlaceholderText('Buscar..')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('Search city...')).toBeInTheDocument()
   })
 })

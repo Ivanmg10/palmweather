@@ -9,6 +9,10 @@ import {
   IconMoon,
   IconWind,
   IconTemperature,
+  IconCloudSnow,
+  IconSunset,
+  IconSunrise,
+  IconUmbrella,
 } from "@tabler/icons-react";
 
 const iconSizeClass = (size) =>
@@ -25,6 +29,8 @@ const iconColors = {
   fog: "text-gray-400",
   wind: "text-gray-400",
   temperature: "text-red-400",
+  sunset: "text-orange-300",
+  sunrise: "text-yellow-300",
   default: "text-amber-400",
 };
 
@@ -39,6 +45,8 @@ const bgColors = {
   fog: "bg-gradient-to-r from-gray-400 to-gray-500",
   wind: "bg-gradient-to-r from-gray-400 to-gray-300",
   temperature: "bg-gradient-to-r from-red-400 to-red-600",
+  sunset: "bg-gradient-to-r from-orange-300 to-red-400",
+  sunrise: "bg-gradient-to-r from-yellow-300 to-orange-400",
   default: "bg-gradient-to-r from-amber-400 to-amber-200",
 };
 
@@ -53,6 +61,10 @@ const iconsMap = {
   IconMoon: IconMoon,
   IconWind: IconWind,
   IconTemperature: IconTemperature,
+  IconCloudSnow: IconCloudSnow,
+  IconSunset: IconSunset,
+  IconSunrise: IconSunrise,
+  IconUmbrella: IconUmbrella,
 };
 
 export const returnIcon = (iconName, size, type = "default") => {
@@ -67,61 +79,85 @@ export const returnIcon = (iconName, size, type = "default") => {
   );
 };
 
-const conditionTextIconMap = {
-  sunny: { icon: "IconSun", type: "sun" },
-  clear: { icon: "IconMoon", type: "moon" },
-  "partly cloudy": { icon: "IconCloud", type: "cloud" },
-  cloudy: { icon: "IconCloud", type: "cloud" },
-  overcast: { icon: "IconCloud", type: "cloud" },
-
-  mist: { icon: "IconMist", type: "mist" },
-  fog: { icon: "IconFog", type: "fog" },
-  "freezing fog": { icon: "IconFog", type: "fog" },
-
-  "patchy rain possible": { icon: "IconCloudRain", type: "rain" },
-  "light rain": { icon: "IconCloudRain", type: "rain" },
-  "light rain shower": { icon: "IconCloudRain", type: "rain" },
-  "moderate rain": { icon: "IconCloudRain", type: "rain" },
-  "heavy rain": { icon: "IconCloudRain", type: "rain" },
-  "torrential rain": { icon: "IconCloudRain", type: "rain" },
-
-  "patchy snow possible": { icon: "IconSnowflake", type: "snow" },
-  "light snow": { icon: "IconSnowflake", type: "snow" },
-  "moderate snow": { icon: "IconSnowflake", type: "snow" },
-  "heavy snow": { icon: "IconSnowflake", type: "snow" },
-
-  "patchy rain with thunder": { icon: "IconCloudBolt", type: "thunder" },
-  "moderate rain with thunder": { icon: "IconCloudBolt", type: "thunder" },
-  "heavy rain with thunder": { icon: "IconCloudBolt", type: "thunder" },
-  "snow with thunder": { icon: "IconCloudBolt", type: "thunder" },
-
-  windy: { icon: "IconWind", type: "wind" },
-
-  hot: { icon: "IconTemperature", type: "temperature" },
-  cold: { icon: "IconTemperature", type: "temperature" },
+const weatherCodeMap = {
+  1000: { icon: "IconSun", type: "sun" },
+  1003: { icon: "IconCloud", type: "cloud" },
+  1006: { icon: "IconCloud", type: "cloud" },
+  1009: { icon: "IconCloud", type: "cloud" },
+  1030: { icon: "IconMist", type: "mist" },
+  1063: { icon: "IconCloudRain", type: "rain" },
+  1066: { icon: "IconSnowflake", type: "snow" },
+  1069: { icon: "IconCloudSnow", type: "snow" },
+  1072: { icon: "IconCloudSnow", type: "snow" },
+  1087: { icon: "IconCloudBolt", type: "thunder" },
+  1114: { icon: "IconWind", type: "wind" },
+  1117: { icon: "IconSnowflake", type: "snow" },
+  1135: { icon: "IconCloudFog", type: "fog" },
+  1147: { icon: "IconCloudFog", type: "fog" },
+  1150: { icon: "IconCloudRain", type: "rain" },
+  1153: { icon: "IconCloudRain", type: "rain" },
+  1168: { icon: "IconCloudRain", type: "rain" },
+  1171: { icon: "IconCloudRain", type: "rain" },
+  1180: { icon: "IconCloudRain", type: "rain" },
+  1183: { icon: "IconCloudRain", type: "rain" },
+  1186: { icon: "IconCloudRain", type: "rain" },
+  1189: { icon: "IconCloudRain", type: "rain" },
+  1192: { icon: "IconCloudRain", type: "rain" },
+  1195: { icon: "IconCloudRain", type: "rain" },
+  1198: { icon: "IconCloudRain", type: "rain" },
+  1201: { icon: "IconCloudRain", type: "rain" },
+  1204: { icon: "IconCloudSnow", type: "snow" },
+  1207: { icon: "IconCloudSnow", type: "snow" },
+  1210: { icon: "IconSnowflake", type: "snow" },
+  1213: { icon: "IconSnowflake", type: "snow" },
+  1216: { icon: "IconSnowflake", type: "snow" },
+  1219: { icon: "IconSnowflake", type: "snow" },
+  1222: { icon: "IconSnowflake", type: "snow" },
+  1225: { icon: "IconSnowflake", type: "snow" },
+  1237: { icon: "IconCloudSnow", type: "snow" },
+  1240: { icon: "IconCloudRain", type: "rain" },
+  1243: { icon: "IconCloudRain", type: "rain" },
+  1246: { icon: "IconCloudRain", type: "rain" },
+  1249: { icon: "IconCloudSnow", type: "snow" },
+  1252: { icon: "IconCloudSnow", type: "snow" },
+  1255: { icon: "IconCloudSnow", type: "snow" },
+  1258: { icon: "IconCloudSnow", type: "snow" },
+  1261: { icon: "IconCloudSnow", type: "snow" },
+  1264: { icon: "IconCloudSnow", type: "snow" },
+  1273: { icon: "IconCloudBolt", type: "thunder" },
+  1276: { icon: "IconCloudBolt", type: "thunder" },
+  1279: { icon: "IconCloudBolt", type: "thunder" },
+  1282: { icon: "IconCloudBolt", type: "thunder" },
 };
 
-export const getWeatherIcon = (text, size, isDay = true) => {
-  if (!text) return returnIcon("IconSun", size, "sun");
+export const getWeatherIcon = (text, size, isDay = true, code) => {
+  if (!text && !code) return returnIcon("IconSun", size, "sun");
 
-  if (size === "big") console.log(text);
+  if (code && weatherCodeMap[code]) {
+    const mapping = weatherCodeMap[code];
+    if (!isDay) {
+      if (mapping.type === "sun") {
+        return returnIcon("IconMoon", size, "moon");
+      }
+      return returnIcon(mapping.icon, size, mapping.type);
+    }
+    return returnIcon(mapping.icon, size, mapping.type);
+  }
 
-  const normalizedText = text.trim().toLowerCase();
-  const mapping = conditionTextIconMap[normalizedText] || {
-    icon: isDay ? "IconSun" : "IconMoon",
-    type: isDay ? "sun" : "moon",
-  };
+  const fallbackType = isDay ? "sun" : "moon";
+  const fallbackIcon = isDay ? "IconSun" : "IconMoon";
 
-  return returnIcon(mapping.icon, size, mapping.type);
+  return returnIcon(fallbackIcon, size, fallbackType);
 };
 
-//ESTA FUNCION SE USA PARA COLOREAR EL FONDO DEL TODAY
-export const getWeatherColor = (text) => {
-  const normalizedText = text.trim().toLowerCase();
-  const mapping = conditionTextIconMap[normalizedText] || {
-    icon: "IconSun",
-    type: "sun",
-  };
+export const getWeatherColor = (text, code, isDay = true) => {
+  if (code && weatherCodeMap[code]) {
+    const mapping = weatherCodeMap[code];
+    if (!isDay && mapping.type === "sun") {
+      return "bg-gradient-to-r from-blue-900 to-blue-800";
+    }
+    return bgColors[mapping.type] || bgColors.default;
+  }
 
-  return bgColors[mapping.type];
+  return isDay ? bgColors.default : "bg-gradient-to-r from-blue-900 to-blue-800";
 };

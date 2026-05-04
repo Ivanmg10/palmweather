@@ -193,6 +193,6 @@ describe("useLocationName", () => {
     });
 
     expect(setError).toHaveBeenCalledWith(true);
-    expect(result.current.locationError).toContain("Error obteniendo ubicación");
+    expect(result.current.locationError).toContain("Error getting location");
   });
 });
