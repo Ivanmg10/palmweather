@@ -89,7 +89,9 @@ src/
 
 ## 📸 Preview
 
-Desktop and mobile responsive design with dark/light theme support.
+Responsive design with dark/light theme support.
+
+![Desktop](src/assets/desktop.png)
 
 ---
 
