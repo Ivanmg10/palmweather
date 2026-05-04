@@ -1,20 +1,26 @@
-# 🌦️ Weather Web Project
+# 🌦️ PalmWeather
 
-Weather web project created with **React + Vite** by **Iván Márquez García**.  
-This application provides real-time and forecast weather information using data from the [WeatherAPI](https://www.weatherapi.com/docs/).
+Weather web application created with **React + Vite** by **Iván Márquez García**.  
+Real-time and forecast weather data from [WeatherAPI](https://www.weatherapi.com/docs/).
 
-It is fully **responsive**, so it works well on both desktop and mobile devices. Users can search for cities using the search bar, and by pressing Enter, the application dynamically updates the forecast for the selected location.
+Fully **responsive** and **PWA-enabled** with offline support.
 
 ---
 
 ## 🚀 Features
 
-- **Current Weather**: Display of temperature.
-- **24-Hour Forecast**: Shows the weather for the next 24 hours, starting from the current time.
-- **7-Day Forecast**: Overview of upcoming days with icons, max/min temperature.
-- **Dynamic Icons**: Weather conditions are mapped to custom icons using [Tabler Icons](https://tabler-icons.io/).
-- **Responsive Design**: Layout adapts to different screen sizes for optimal usability.
-- **City Search**: Users can type a city name in the search bar and press Enter to update the forecast dynamically.
+- **Current Weather** - Temperature, condition, wind, humidity, UV, visibility, cloud cover
+- **7-Day Forecast** - Daily max/min temps, icons, rain probability
+- **48-Hour Temperature Chart** - Interactive line chart with amCharts5
+- **Rain Probability Chart** - Bar chart showing precipitation chances
+- **Wind & Humidity Chart** - Dual-axis line chart
+- **Weather Animations** - Dynamic effects for rain, snow, sun, moon, clouds, storm
+- **City Search** - Autocomplete dropdown with animated suggestions
+- **Dark/Light Mode** - Toggle with localStorage persistence
+- **PWA Support** - Offline caching, installable app
+- **SEO Optimized** - Meta tags, Open Graph, Twitter Cards
+- **Geolocation** - Auto-detect user location
+- **Accessible** - ARIA labels, semantic HTML
 
 ---
 
@@ -23,8 +29,11 @@ It is fully **responsive**, so it works well on both desktop and mobile devices.
 - [React](https://reactjs.org/) – UI library
 - [Vite](https://vitejs.dev/) – Development bundler
 - [TailwindCSS](https://tailwindcss.com/) – Styling
-- [Tabler Icons React](https://tabler-icons.io/) – Weather & UI icons
-- [WeatherAPI](https://www.weatherapi.com/) – Data provider
+- [amCharts5](https://www.amcharts.com/) – Charts
+- [Framer Motion](https://www.framer.com/motion/) – Animations
+- [Tabler Icons](https://tabler-icons.io/) – Icons
+- [Vite PWA](https://vite-pwa.dev/) – PWA plugin
+- [WeatherAPI](https://www.weatherapi.com/) – Weather data
 
 ---
 
@@ -32,60 +41,70 @@ It is fully **responsive**, so it works well on both desktop and mobile devices.
 
 ```bash
 src/
- ├── components/       # Reusable UI components (Forecast, Hourly, etc.)
- ├── utils/            # Helper functions (date parsing, icon mapping...)
- ├── App.jsx           # Main app entry point
- └── main.jsx          # Vite entry point
-
+├── components/
+│   ├── today/           # Current weather with animations
+│   ├── forecast/        # 7-day forecast with search
+│   ├── temperature/     # Hourly temperature
+│   ├── temperatureChart/
+│   ├── rainChart/
+│   └── windHumidityChart/
+├── hooks/               # Custom hooks (useLocationName)
+├── pages/               # Loading, Error pages
+├── utils/               # IconUtils, DateUtils
+├── App.jsx              # Main app
+└── main.jsx             # Entry point
 ```
 
 ---
 
-## ⚡ How to Run the Project
+## ⚡ How to Run
 
-1. Clone the repository:
+1. **Clone the repository:**
+   ```bash
    git clone https://github.com/Ivanmg10/palmweather.git
    cd palmweather
+   ```
 
-2. Install dependencies:
+2. **Install dependencies:**
+   ```bash
    npm install
+   ```
 
-   # or
-
-   yarn install
-
-3. Start the development server:
-
+3. **Start development server:**
+   ```bash
    npm run dev
+   ```
 
-   # or
+4. **Open in browser:**
+   ```
+   http://localhost:5173
+   ```
 
-   yarn dev
-
-4. Open in browser:
-   The app will be available at http://localhost:5173
-
-5. Search for a city:
-   Type the city name in the search bar and press Enter to dynamically update the forecast.
-
----
-
-## 📸 Screenshots
-
-Desktop View
-
-![alt text](./src/assets/desktop.png)
-
-Mobile View
-
-![alt text](./src/assets/mobile.png)
+5. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
 ---
 
-## 🔮 Future Improvements
+## 📸 Preview
 
-Implement dark/light theme toggle.
-Add geolocation feature to detect user location automatically.
-Support more languages for international users.
+Desktop and mobile responsive design with dark/light theme support.
 
-Optimize code
+---
+
+## 🔧 Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_WEATHER_API_KEY=your_api_key_here
+```
+
+Get a free API key from [WeatherAPI](https://www.weatherapi.com/).
+
+---
+
+## 📄 License
+
+MIT
